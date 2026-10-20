@@ -307,7 +307,7 @@ const scenes = {
     title: "The Town Gate",
     text: "The great gate stands before you, locked with a single heavy lock. Behind you, footsteps are getting closer and closer.",
     choices: [
-      { text: "Unlock the gate", nextScene: "finalroad" },
+      { text: "Break the lock", nextScene: "lockheld" },
       { text: "Climb over the wall", nextScene: "caught" }
     ]
   },
@@ -356,6 +356,35 @@ const scenes = {
     title: "Lost in the Fog",
     text: "A thick white fog swallows you. You walk for hours, but every step leads you back to the start. You are lost forever.",
     result: "lose"
+  },
+  lockheld: {
+    title: "The Lock Holds",
+    text: "The lock does not budge. Behind you the footsteps stop, and a cold whisper says that gates only open for those who carry a key. A tiny hut leans against the wall nearby.",
+    choices: [
+      { text: "Search the gatekeeper's hut", nextScene: "hut" },
+      { text: "Climb over the wall", nextScene: "caught" }
+    ]
+  },
+  hut: {
+    title: "The Gatekeeper's Hut",
+    text: "Dust covers everything. An old key hangs from a nail by the door, and under the bed something is breathing.",
+    choices: [
+      { text: "Take the key and run to the gate", nextScene: "gate" },
+      { text: "Look under the bed", nextScene: "caught" }
+    ]
+  },
+  ringpower: {
+    title: "The Ring's Power",
+    text: "The ring blazes with light. Your reflection screams and the mirror shatters into a thousand pieces. Behind the broken glass, a hidden door opens onto the road out of town.",
+    choices: [
+      { text: "Run through the hidden door", nextScene: "finalroad" },
+      { text: "Pick up a shard of mirror", nextScene: "trapped" }
+    ]
+  },
+  madness: {
+    title: "Lost to Madness",
+    text: "The whispers stop being scary. You answer them, then you agree with them, and then you cannot remember your own name. Midnight keeps you.",
+    result: "lose"
   }
 };
 
@@ -365,18 +394,85 @@ const defaultImage = {
 };
 
 const sceneImages = {
-  start: { src: "images/start.jpg", alt: "You lie on an empty street under a dark sky" },
-  street: { src: "images/street.jpg", alt: "A silent street with flickering streetlights" },
-  building: { src: "images/building.jpg", alt: "An abandoned building with a creaky staircase" },
-  forest: { src: "images/forest.jpg", alt: "A foggy forest road in the dark" },
-  graveyard: { src: "images/graveyard.jpg", alt: "Crooked headstones in the mist" },
-  clocktower: { src: "images/clocktower.jpg", alt: "A clock tower frozen at midnight" },
-  townsquare: { src: "images/townsquare.jpg", alt: "A dry fountain in the town square" },
-  gate: { src: "images/gate.jpg", alt: "A huge iron gate covered in chains" },
-  escape: { src: "images/escape.jpg", alt: "A car driving across a bridge at sunrise" },
-  freedom: { src: "images/freedom.jpg", alt: "A bright light filling the sky as the curse breaks" },
-  sunrise: { src: "images/sunrise.jpg", alt: "The sun rising over the town as shadows burn away" },
-  caught: { src: "images/caught.jpg", alt: "A tall dark shadow reaching toward you" },
-  trapped: { src: "images/trapped.jpg", alt: "A room full of doors that all lead back to the same place" },
-  fog: { src: "images/fog.jpg", alt: "A thick white fog swallowing everything" }
+  start: { src: "images/start.jpg", alt: "A moonlit deserted town street with a lone figure standing under a flickering lamp" },
+  street: { src: "images/street.jpg", alt: "A silent street lined with dark buildings, glowing lamps and drifting fog" },
+  building: { src: "images/building.jpg", alt: "An abandoned house at night with glowing windows and a bare tree beside it" },
+  car: { src: "images/car.jpg", alt: "Headlights cutting through fog on a dark road, seen from inside a car" },
+  alley: { src: "images/alley.jpg", alt: "A narrow alley with a lantern on the wall and an eerie green glow at the far end" },
+  upstairs: { src: "images/upstairs.jpg", alt: "A dusty upstairs hallway with a door at the end glowing blood red" },
+  basement: { src: "images/basement.jpg", alt: "A damp basement with old crates, pipes and a dark tunnel opening" },
+  gasstation: { src: "images/gasstation.jpg", alt: "An empty gas station under glowing lights with an abandoned tow truck beside the pumps" },
+  forest: { src: "images/forest.jpg", alt: "A foggy forest road beneath tall dark pine trees and the moon" },
+  lantern: { src: "images/lantern.jpg", alt: "A glowing old lantern surrounded by strange floating symbols" },
+  graveyard: { src: "images/graveyard.jpg", alt: "A moonlit graveyard with crooked headstones, bare trees and a small church" },
+  mirror: { src: "images/mirror.jpg", alt: "A tall ornate mirror with a smiling reflection that has glowing red eyes" },
+  rooftop: { src: "images/rooftop.jpg", alt: "A rooftop view over the sleeping town with a tow truck driving below" },
+  tunnel: { src: "images/tunnel.jpg", alt: "A cold wet tunnel with a rusty ladder and water on the floor" },
+  boxes: { src: "images/basement.jpg", alt: "Old crates in a dim basement, holding a flashlight, rope and a map" },
+  shop: { src: "images/shop.jpg", alt: "A gas station shop with empty shelves and a crackling radio on the counter" },
+  truck: { src: "images/truck.jpg", alt: "A yellow tow truck facing the viewer with glowing headlights in the fog" },
+  cabin: { src: "images/cabin.jpg", alt: "A lonely log cabin in the woods with a warm glowing window" },
+  swamp: { src: "images/swamp.jpg", alt: "A misty swamp with dead trees and glowing green lights floating over the water" },
+  clocktower: { src: "images/clocktower.jpg", alt: "A tall clock tower with its clock frozen at midnight under a full moon" },
+  church: { src: "images/church.jpg", alt: "An empty church with a candle-lit aisle leading to a silver cross on the altar" },
+  crypt: { src: "images/crypt.jpg", alt: "A cold blue crypt with a stone coffin and a gold ring on the floor" },
+  mirrorworld: { src: "images/mirrorworld.jpg", alt: "A reversed teal hallway with two doors and your reflection standing beside you" },
+  sewer: { src: "images/sewer.jpg", alt: "A green sewer tunnel with a barred grate glowing at the far end" },
+  radio: { src: "images/radio.jpg", alt: "A glowing vintage radio with its dial lit up in the dark" },
+  backroom: { src: "images/backroom.jpg", alt: "A back room with a frosted freezer door that glows and has a red crack of light" },
+  highway: { src: "images/highway.jpg", alt: "An empty highway at night with warning signs that say turn back" },
+  keyroom: { src: "images/keyroom.jpg", alt: "A heavy glowing key on a table beside a hidden door filled with light" },
+  fireside: { src: "images/fireside.jpg", alt: "A stone fireplace with a warm fire burning in a dark cabin" },
+  boat: { src: "images/boat.jpg", alt: "A small rowboat on black water facing rows of glowing red eyes in the distance" },
+  bell: { src: "images/bell.jpg", alt: "A huge golden bell in the clock tower against a pink dawn sky" },
+  topfloor: { src: "images/topfloor.jpg", alt: "The open top floor of the tower looking out over the town at night" },
+  altar: { src: "images/altar.jpg", alt: "A glowing golden key resting on a church altar between two candles" },
+  coffin: { src: "images/coffin.jpg", alt: "A golden ring with a blue gem glowing beside a rising stone stairway" },
+  reflection: { src: "images/reflection.jpg", alt: "You face your reflection, which holds out its hand and grins with red eyes" },
+  grate: { src: "images/grate.jpg", alt: "A view of the moonlit sky and town through a round sewer grate" },
+  townsquare: { src: "images/townsquare.jpg", alt: "A dry fountain in the town square with glowing lamps and an iron gate in the distance" },
+  fountain: { src: "images/fountain.jpg", alt: "A fountain filled with dark water and a silver coin glowing at the bottom" },
+  gate: { src: "images/gate.jpg", alt: "A huge iron gate covered in chains and locked with a gold padlock" },
+  bridge: { src: "images/bridge.jpg", alt: "A long bridge at night with a tall thin figure standing in the middle" },
+  finalroad: { src: "images/finalroad.jpg", alt: "The town gate swung open onto a road leading to the gray dawn" },
+  escape: { src: "images/escape.jpg", alt: "A car crossing a bridge toward the rising sun" },
+  freedom: { src: "images/freedom.jpg", alt: "A figure walking into a bright white light as the curse breaks" },
+  sunrise: { src: "images/sunrise.jpg", alt: "The sun rising over the town as the shadows burn away" },
+  caught: { src: "images/caught.jpg", alt: "A giant shadow creature with glowing red eyes towering over a small figure" },
+  trapped: { src: "images/trapped.jpg", alt: "An endless hallway of doors that all lead back to the same place" },
+  lockheld: { src: "images/gate.jpg", alt: "The huge iron gate stays locked as shadows gather behind you" },
+  hut: { src: "images/cabin.jpg", alt: "A tiny dusty hut with a warm window beside the town wall" },
+  ringpower: { src: "images/ringpower.jpg", alt: "A glowing gold ring and shattering shards of mirror" },
+  madness: { src: "images/madness.jpg", alt: "Dozens of red eyes staring from the darkness around a single huge eye" },
+  fog: { src: "images/fog.jpg", alt: "A lone figure lost in thick white fog" }
+};
+
+const items = {
+  lantern: { name: "Old Lantern", icon: "🏮" },
+  key: { name: "Old Key", icon: "🗝️" },
+  ring: { name: "Crypt Ring", icon: "💍" }
+};
+
+const sceneItems = {
+  lantern: "lantern",
+  keyroom: "key",
+  altar: "key",
+  hut: "key",
+  coffin: "ring"
+};
+
+const itemChoices = {
+  gate: { item: "key", text: "Unlock the gate with your key", nextScene: "finalroad" },
+  sewer: { item: "lantern", text: "Hold up the lantern and read the pipe markings", nextScene: "grate" },
+  reflection: { item: "ring", text: "Hold up the ring", nextScene: "ringpower" }
+};
+
+const sanityChanges = {
+  alley: -8, upstairs: -8, basement: -10, graveyard: -12, mirror: -15,
+  rooftop: -4, tunnel: -8, radio: -8, backroom: -12, swamp: -10,
+  boat: -12, topfloor: -8, crypt: -15, mirrorworld: -15, reflection: -15,
+  sewer: -10, gate: -5, lockheld: -15, hut: -10, fountain: -8,
+  cabin: 10, church: 10, bell: 10, altar: 8, keyroom: 5, ringpower: 10, coffin: 5, fireside: 5
+};
+
 };
