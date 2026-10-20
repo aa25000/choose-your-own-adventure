@@ -358,3 +358,25 @@ const scenes = {
     result: "lose"
   }
 };
+
+const defaultImage = {
+  src: "images/default.jpg",
+  alt: "A dark, empty town at midnight"
+};
+
+const sceneImages = {
+  start: { src: "images/start.jpg", alt: "You lie on an empty street under a dark sky" },
+  street: { src: "images/street.jpg", alt: "A silent street with flickering streetlights" },
+  building: { src: "images/building.jpg", alt: "An abandoned building with a creaky staircase" },
+  forest: { src: "images/forest.jpg", alt: "A foggy forest road in the dark" },
+  graveyard: { src: "images/graveyard.jpg", alt: "Crooked headstones in the mist" },
+  clocktower: { src: "images/clocktower.jpg", alt: "A clock tower frozen at midnight" },
+  townsquare: { src: "images/townsquare.jpg", alt: "A dry fountain in the town square" },
+  gate: { src: "images/gate.jpg", alt: "A huge iron gate covered in chains" },
+  escape: { src: "images/escape.jpg", alt: "A car driving across a bridge at sunrise" },
+  freedom: { src: "images/freedom.jpg", alt: "A bright light filling the sky as the curse breaks" },
+  sunrise: { src: "images/sunrise.jpg", alt: "The sun rising over the town as shadows burn away" },
+  caught: { src: "images/caught.jpg", alt: "A tall dark shadow reaching toward you" },
+  trapped: { src: "images/trapped.jpg", alt: "A room full of doors that all lead back to the same place" },
+  fog: { src: "images/fog.jpg", alt: "A thick white fog swallowing everything" }
+};
