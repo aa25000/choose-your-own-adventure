@@ -307,7 +307,7 @@ const scenes = {
     title: "The Town Gate",
     text: "The great gate stands before you, locked with a single heavy lock. Behind you, footsteps are getting closer and closer.",
     choices: [
-      { text: "Break the lock", nextScene: "lockheld" },
+      { text: "Unlock the gate", nextScene: "finalroad" },
       { text: "Climb over the wall", nextScene: "caught" }
     ]
   },
@@ -355,35 +355,6 @@ const scenes = {
   fog: {
     title: "Lost in the Fog",
     text: "A thick white fog swallows you. You walk for hours, but every step leads you back to the start. You are lost forever.",
-    result: "lose"
-  },
-  lockheld: {
-    title: "The Lock Holds",
-    text: "The lock does not budge. Behind you the footsteps stop, and a cold whisper says that gates only open for those who carry a key. A tiny hut leans against the wall nearby.",
-    choices: [
-      { text: "Search the gatekeeper's hut", nextScene: "hut" },
-      { text: "Climb over the wall", nextScene: "caught" }
-    ]
-  },
-  hut: {
-    title: "The Gatekeeper's Hut",
-    text: "Dust covers everything. An old key hangs from a nail by the door, and under the bed something is breathing.",
-    choices: [
-      { text: "Take the key and run to the gate", nextScene: "gate" },
-      { text: "Look under the bed", nextScene: "caught" }
-    ]
-  },
-  ringpower: {
-    title: "The Ring's Power",
-    text: "The ring blazes with light. Your reflection screams and the mirror shatters into a thousand pieces. Behind the broken glass, a hidden door opens onto the road out of town.",
-    choices: [
-      { text: "Run through the hidden door", nextScene: "finalroad" },
-      { text: "Pick up a shard of mirror", nextScene: "trapped" }
-    ]
-  },
-  madness: {
-    title: "Lost to Madness",
-    text: "The whispers stop being scary. You answer them, then you agree with them, and then you cannot remember your own name. Midnight keeps you.",
     result: "lose"
   }
 };
@@ -440,39 +411,5 @@ const sceneImages = {
   sunrise: { src: "images/sunrise.jpg", alt: "The sun rising over the town as the shadows burn away" },
   caught: { src: "images/caught.jpg", alt: "A giant shadow creature with glowing red eyes towering over a small figure" },
   trapped: { src: "images/trapped.jpg", alt: "An endless hallway of doors that all lead back to the same place" },
-  lockheld: { src: "images/gate.jpg", alt: "The huge iron gate stays locked as shadows gather behind you" },
-  hut: { src: "images/cabin.jpg", alt: "A tiny dusty hut with a warm window beside the town wall" },
-  ringpower: { src: "images/ringpower.jpg", alt: "A glowing gold ring and shattering shards of mirror" },
-  madness: { src: "images/madness.jpg", alt: "Dozens of red eyes staring from the darkness around a single huge eye" },
   fog: { src: "images/fog.jpg", alt: "A lone figure lost in thick white fog" }
-};
-
-const items = {
-  lantern: { name: "Old Lantern", icon: "🏮" },
-  key: { name: "Old Key", icon: "🗝️" },
-  ring: { name: "Crypt Ring", icon: "💍" }
-};
-
-const sceneItems = {
-  lantern: "lantern",
-  keyroom: "key",
-  altar: "key",
-  hut: "key",
-  coffin: "ring"
-};
-
-const itemChoices = {
-  gate: { item: "key", text: "Unlock the gate with your key", nextScene: "finalroad" },
-  sewer: { item: "lantern", text: "Hold up the lantern and read the pipe markings", nextScene: "grate" },
-  reflection: { item: "ring", text: "Hold up the ring", nextScene: "ringpower" }
-};
-
-const sanityChanges = {
-  alley: -8, upstairs: -8, basement: -10, graveyard: -12, mirror: -15,
-  rooftop: -4, tunnel: -8, radio: -8, backroom: -12, swamp: -10,
-  boat: -12, topfloor: -8, crypt: -15, mirrorworld: -15, reflection: -15,
-  sewer: -10, gate: -5, lockheld: -15, hut: -10, fountain: -8,
-  cabin: 10, church: 10, bell: 10, altar: 8, keyroom: 5, ringpower: 10, coffin: 5, fireside: 5
-};
-
 };
